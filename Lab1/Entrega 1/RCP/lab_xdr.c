@@ -24,9 +24,13 @@ xdr_valor (XDR *xdrs, valor *objp)
 {
 	register int32_t *buf;
 
-	 if (!xdr_float (xdrs, &objp->numero))
+	 if (!xdr_float (xdrs, &objp->menor))
 		 return FALSE;
-	 if (!xdr_int (xdrs, &objp->indice))
+	 if (!xdr_float (xdrs, &objp->maior))
+		 return FALSE;
+	 if (!xdr_int (xdrs, &objp->indiceMaior))
+		 return FALSE;
+	 if (!xdr_int (xdrs, &objp->indiceMenor))
 		 return FALSE;
 	return TRUE;
 }

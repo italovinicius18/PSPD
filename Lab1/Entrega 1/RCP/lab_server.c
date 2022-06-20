@@ -7,41 +7,28 @@
 #include "lab.h"
 
 valor *
-acharmenor_110011_svc(operandos *argp, struct svc_req *rqstp)
+acharvalores_110011_svc(operandos *argp, struct svc_req *rqstp)
 {
 	static valor  result;
 
 	int i;
-    result.numero = argp->v[0];
+    result.menor = argp->v[0];
+    result.maior = argp->v[0];
 
-    printf("%d\n", argp->len);
+
+    printf("Tamanho do vetor: %d\n", argp->len);
 
     for (i = 0; i < argp->len; i++)
     {
-        if (argp->v[i] < result.numero)
+        if (argp->v[i] < result.menor)
         {
-            result.numero = argp->v[i];
-            result.indice = i;
+            result.menor = argp->v[i];
+            result.indiceMenor = i;
         }
-    }
-
-	return &result;
-}
-
-valor *
-acharmaior_110011_svc(operandos *argp, struct svc_req *rqstp)
-{
-	static valor  result;
-
-	int i;
-    result.numero = argp->v[0];
-
-    for (i = 0; i < argp->len; i++)
-    {
-        if (argp->v[i] > result.numero)
+		if (argp->v[i] > result.maior)
         {
-            result.numero = argp->v[i];
-            result.indice = i;
+            result.maior = argp->v[i];
+            result.indiceMaior = i;
         }
     }
 

@@ -5,7 +5,6 @@
  */
 
 #include "lab.h"
-
 #include <stdlib.h>
 #include <math.h>
 
@@ -24,12 +23,12 @@ void inicia_vetor(operandos *arg) {
     }
 }
 
+
 void
 prog_110011(char *host)
 {
 	CLIENT *clnt;
-	valor  *result_1;
-	valor  *result_2;
+	valor  *result;
 	operandos  arg;
 
 	arg.len = TAM;
@@ -44,18 +43,16 @@ prog_110011(char *host)
 	}
 #endif	/* DEBUG */
 
+	result = acharvalores_110011(&arg, clnt);
+	if (result == (valor *) NULL) {
+		clnt_perror (clnt, "call failed");
+	}
 
-	result_1 = acharmenor_110011(&arg, clnt);
-		printf("O menor valor e %f, na posicao %d\n", result_1->numero, result_1->indice);
-	if (result_1 == (valor *) NULL) {
-		clnt_perror (clnt, "call failed");
-	}
-	result_2 = acharmaior_110011(&arg, clnt);
-	if (result_2 == (valor *) NULL) {
-		clnt_perror (clnt, "call failed");
-	}{
-		printf("O maior valor e %f, na posicao %d\n", result_2->numero, result_2->indice);
-	}
+	printf("Indice do maior: %d\n", result->indiceMaior);
+	printf("Maior valor: %f\n", result->maior);
+	printf("Indice do menor: %d\n", result->indiceMenor);
+	printf("Menor valor: %f\n\n", result->menor);
+
 #ifndef	DEBUG
 	clnt_destroy (clnt);
 #endif	 /* DEBUG */
@@ -68,7 +65,6 @@ main (int argc, char *argv[])
 	char *host;
 
 	host = "127.0.0.1";
-	
 	prog_110011 (host);
-	exit (0);
+exit (0);
 }

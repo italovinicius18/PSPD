@@ -21,8 +21,10 @@ struct operandos {
 typedef struct operandos operandos;
 
 struct valor {
-	float numero;
-	int indice;
+	float menor;
+	float maior;
+	int indiceMaior;
+	int indiceMenor;
 };
 typedef struct valor valor;
 
@@ -30,21 +32,15 @@ typedef struct valor valor;
 #define VERS 110011
 
 #if defined(__STDC__) || defined(__cplusplus)
-#define acharMenor 1
-extern  valor * acharmenor_110011(operandos *, CLIENT *);
-extern  valor * acharmenor_110011_svc(operandos *, struct svc_req *);
-#define acharMaior 2
-extern  valor * acharmaior_110011(operandos *, CLIENT *);
-extern  valor * acharmaior_110011_svc(operandos *, struct svc_req *);
+#define acharValores 1
+extern  valor * acharvalores_110011(operandos *, CLIENT *);
+extern  valor * acharvalores_110011_svc(operandos *, struct svc_req *);
 extern int prog_110011_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
 
 #else /* K&R C */
-#define acharMenor 1
-extern  valor * acharmenor_110011();
-extern  valor * acharmenor_110011_svc();
-#define acharMaior 2
-extern  valor * acharmaior_110011();
-extern  valor * acharmaior_110011_svc();
+#define acharValores 1
+extern  valor * acharvalores_110011();
+extern  valor * acharvalores_110011_svc();
 extern int prog_110011_freeresult ();
 #endif /* K&R C */
 

@@ -20,8 +20,7 @@ static void
 prog_110011(struct svc_req *rqstp, register SVCXPRT *transp)
 {
 	union {
-		operandos acharmenor_110011_arg;
-		operandos acharmaior_110011_arg;
+		operandos acharvalores_110011_arg;
 	} argument;
 	char *result;
 	xdrproc_t _xdr_argument, _xdr_result;
@@ -32,16 +31,10 @@ prog_110011(struct svc_req *rqstp, register SVCXPRT *transp)
 		(void) svc_sendreply (transp, (xdrproc_t) xdr_void, (char *)NULL);
 		return;
 
-	case acharMenor:
+	case acharValores:
 		_xdr_argument = (xdrproc_t) xdr_operandos;
 		_xdr_result = (xdrproc_t) xdr_valor;
-		local = (char *(*)(char *, struct svc_req *)) acharmenor_110011_svc;
-		break;
-
-	case acharMaior:
-		_xdr_argument = (xdrproc_t) xdr_operandos;
-		_xdr_result = (xdrproc_t) xdr_valor;
-		local = (char *(*)(char *, struct svc_req *)) acharmaior_110011_svc;
+		local = (char *(*)(char *, struct svc_req *)) acharvalores_110011_svc;
 		break;
 
 	default:

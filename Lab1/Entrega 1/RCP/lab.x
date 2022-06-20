@@ -4,13 +4,14 @@ struct operandos{
 };
 
 struct valor{
-    float numero;
-    int indice;
+    float menor;
+    float maior;
+    int indiceMaior;
+    int indiceMenor;
 };
 
 program PROG {
     version VERS {
-        valor acharMenor(operandos) = 1;
-        valor acharMaior(operandos) = 2;
+        valor acharValores(operandos) = 1;
     } = 110011;
 } = 55000555;
