@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+// The laboratory service definition.
+service Lab {
+  // Sends a array and return the biggest and smallest element, and their respective indexes.
+  rpc BigSmall (LabRequest) returns (LabResponse) {}
+}
+
+// The request message containing the array and size.
+message LabRequest {
+  repeated float values = 1;
+  int32 size = 2;
+}
+
+// The response message containing the biggest and smallest element, and their respective indexes.
+message LabResponse {
+  float biggest = 1;
+  int32 biggestIndex = 2;
+  float smallest = 3;
+  int32 smallestIndex = 4;
+}
