@@ -1,0 +1,7 @@
+Java:
+
+https://hadoop.apache.org/docs/stable/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html#Example:_WordCount_v1.0
+
+Py:
+
+hadoop jar hadoop-streaming-3.3.3.jar -input /user/italo/wordcount/input/input.txt -output /user/italo/wordcountPy/output/ -mapper "python3 mapper.py" -reducer "python3 reducer.py" -file mapper.py -file reducer.py

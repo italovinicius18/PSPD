@@ -1,0 +1,1 @@
+hadoop jar hadoop-streaming-3.3.3.jar -input /user/italo/friends/input/relations.txt -output /user/italo/friends/output/ -mapper "python3 mapper.py" -reducer "python3 reducer.py" -file mapper.py -file reducer.py
