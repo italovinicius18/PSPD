@@ -10,7 +10,7 @@ os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-streaming
 
 spark = SparkSession \
     .builder \
-    .appName("Kafka") \
+    .appName("Kafka-frases") \
     .getOrCreate()
 
 # Define schema of json
@@ -22,6 +22,7 @@ df = spark.readStream \
     .format("kafka") \
     .option("kafka.bootstrap.servers", 'localhost:9092') \
     .option("subscribe", 'frases') \
+    .option("startingOffsets", "earliest") \
     .load()
 
 df = df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
@@ -29,8 +30,6 @@ df = df.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)")
 
 df = df.withColumn("value",from_json(col("value"),schema)) \
     .select("value.*")
-
-# seconds = 3
 
 # query = df  \
 #     .withColumn('word', explode(split(col('quote'), ' ')))\
@@ -57,6 +56,7 @@ query = query.selectExpr("CAST(word AS STRING) as key", "to_json(struct(*)) AS v
     .format("kafka") \
     .option("kafka.bootstrap.servers", 'localhost:9092') \
     .option("topic", 'frases-tratadas') \
+    .option("truncate", "False") \
     .option("checkpointLocation", 'checkpoint') \
     .start()
 

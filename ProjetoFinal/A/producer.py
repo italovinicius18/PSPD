@@ -41,6 +41,5 @@ while True:
     quote,author = format_clean_quote(quote)
     
     data = {'quote': quote.lower(), 'author': author.lower()}
-    print(data)
     producer.send('frases', data)
     time.sleep(1)

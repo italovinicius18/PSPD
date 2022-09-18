@@ -4,6 +4,10 @@ $KAFKA_HOME/bin/zookeeper-server-start.sh $KAFKA_HOME/config/zookeeper.propertie
 
 $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
 
+# Close topics
+
+$KAFKA_HOME/bin/kafka-topics.sh --bootstrap-server localhost:9092 --delete --topic 'frases'
+
 # Hadoop
 
 sudo service ssh restart

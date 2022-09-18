@@ -12,12 +12,8 @@ consumer = KafkaConsumer(
         value_deserializer=lambda m: json.loads(m.decode('utf-8'))
     )
 
-
-id = 1
-
 for message in consumer:
     # Add timestamp
     message.value['timestamp'] = datetime.now()
     resp = es.index(index="words", document=message.value)
     print(resp)
-    id+=1
