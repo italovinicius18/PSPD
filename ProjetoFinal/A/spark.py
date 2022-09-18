@@ -56,8 +56,7 @@ query = query.selectExpr("CAST(word AS STRING) as key", "to_json(struct(*)) AS v
     .format("kafka") \
     .option("kafka.bootstrap.servers", 'localhost:9092') \
     .option("topic", 'frases-tratadas') \
-    .option("truncate", "False") \
-    .option("checkpointLocation", 'checkpoint') \
+    .option("checkpointLocation", 'checkpointFrases') \
     .start()
 
 query.awaitTermination()

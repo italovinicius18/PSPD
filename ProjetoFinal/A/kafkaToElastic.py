@@ -15,5 +15,6 @@ consumer = KafkaConsumer(
 for message in consumer:
     # Add timestamp
     message.value['timestamp'] = datetime.now()
-    resp = es.index(index="words", document=message.value)
+    print(message.value)
+    resp = es.index(index="words", id=message.value['word'], document=message.value)
     print(resp)

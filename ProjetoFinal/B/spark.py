@@ -89,7 +89,7 @@ query = df.selectExpr("CAST(id AS STRING) as key", "to_json(struct(*)) AS value"
     .option("kafka.bootstrap.servers", 'localhost:9092') \
     .option("topic", 'mensagens-tratadas') \
     .option("truncate", "False") \
-    .option("checkpointLocation", 'checkpoint') \
+    .option("checkpointLocation", 'checkpointPoliticos') \
     .start()
 
 query.awaitTermination()
